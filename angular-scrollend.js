@@ -1,5 +1,5 @@
 (function(angular) {
-    angular.module('customEvents', [])
+    angular.module('ngScrollEnd', [])
     .directive('ngScrollEnd', ['$parse', function($parse) {
         return function(scope, element, attr) {
             var fn = $parse(attr['ngScrollEnd']);
