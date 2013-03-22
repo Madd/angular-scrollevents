@@ -1,9 +1,9 @@
 (function(angular) {
     angular.module('customEvents', [])
-    .directive('ngOnScrollEnd', ['$parse', function($parse) {
+    .directive('ngScrollEnd', ['$parse', function($parse) {
         return function(scope, element, attr) {
-            var fn = $parse(attr['ngOnScrollEnd']);
-            var opts = $parse(attr['ngOnScrollEnd' + 'Opts'])(scope, {});
+            var fn = $parse(attr['ngScrollEnd']);
+            var opts = $parse(attr['ngScrollEnd' + 'Opts'])(scope, {});
     
             var interval,
             el = element[0],
