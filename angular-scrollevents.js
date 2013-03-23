@@ -2,10 +2,10 @@
     'use strict';
     var TIMER_DELAY = 150;
   
-    angular.module('ngScrollEnd', [])
-    .directive('ngScrollEnd', ['$parse', '$window', function($parse, $window) {
+    angular.module('ngScrollEvent', [])
+    .directive('ngScrollEvent', ['$parse', '$window', function($parse, $window) {
         return function(scope, element, attr) {
-          var fn = $parse(attr.ngScrollEnd);
+          var fn = $parse(attr.ngScrollEvent);
     
             var interval,
             el = element[0],
