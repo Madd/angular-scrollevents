@@ -19,4 +19,3 @@ You can find a working example here: http://jsbin.com/uropuq/3/
 
 #### Todo:
  - Write test
- - Provide preformance test results
