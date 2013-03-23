@@ -1,17 +1,18 @@
 (function(angular) {
+    'use strict';
+    var TIMER_DELAY = 150;
+  
     angular.module('ngScrollEnd', [])
-    .directive('ngScrollEnd', ['$parse', function($parse) {
+    .directive('ngScrollEnd', ['$parse', '$window', function($parse, $window) {
         return function(scope, element, attr) {
-            var fn = $parse(attr['ngScrollEnd']);
-            var opts = $parse(attr['ngScrollEnd' + 'Opts'])(scope, {});
+          var fn = $parse(attr.ngScrollEnd);
     
             var interval,
             el = element[0],
             scrollPosition = {
                 x: 0,
                 y: 0
-            };
-    
+            };    
     
             var bindScroll = function() {
                 element.bind('scroll', function(event) {
@@ -20,29 +21,30 @@
     
                     startInterval(event);
                     unbindScroll();
+                    scrollTrigger(event, false);
                 });
             };
     
             var startInterval = function(event) {
-                interval = setInterval(function() {
+                interval = $window.setInterval(function() {
                     if(scrollPosition.x == el.scrollLeft && scrollPosition.y == el.scrollTop) {
-                        clearInterval(interval);
+                        $window.clearInterval(interval);
                         bindScroll();
-                        scrollEndTrigger(event);
+                        scrollTrigger(event, true);
                     } else {
                         scrollPosition.x = el.scrollLeft;
                         scrollPosition.y = el.scrollTop;
                     }
-                }, 150);
+                }, TIMER_DELAY);
             };
     
             var unbindScroll = function() {
                 element.unbind('scroll');
             };
     
-            var scrollEndTrigger = function(event) {
+            var scrollTrigger = function(event, isEndEvent) {
                 scope.$apply(function() {
-                    fn(scope, {$event: event});
+                  fn(scope, {$event: event, isEndEvent: isEndEvent});
                 });
             };
     
