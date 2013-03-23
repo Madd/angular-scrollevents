@@ -1,6 +1,7 @@
 (function(angular) {
     'use strict';
-    var TIMER_DELAY = 150;
+    
+    var INTERVAL_DELAY = 150;
   
     angular.module('ngScrollEvent', [])
     .directive('ngScrollEvent', ['$parse', '$window', function($parse, $window) {
@@ -35,7 +36,7 @@
                         scrollPosition.x = el.scrollLeft;
                         scrollPosition.y = el.scrollTop;
                     }
-                }, TIMER_DELAY);
+                }, INTERVAL_DELAY);
             };
     
             var unbindScroll = function() {
