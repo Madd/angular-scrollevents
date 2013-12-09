@@ -9,21 +9,25 @@
           var fn = $parse(attr.ngScrollEvent);
     
             var interval,
+            handler,
             el = element[0],
+            scrollEvent = 'scroll',
             scrollPosition = {
                 x: 0,
                 y: 0
-            };    
+            };
     
             var bindScroll = function() {
-                element.bind('scroll', function(event) {
+                handler = function(event) {
                     scrollPosition.x = el.scrollLeft;
                     scrollPosition.y = el.scrollTop;
     
                     startInterval(event);
                     unbindScroll();
                     scrollTrigger(event, false);
-                });
+                };
+
+                element.bind(scrollEvent, handler);
             };
     
             var startInterval = function(event) {
@@ -40,7 +44,8 @@
             };
     
             var unbindScroll = function() {
-                element.unbind('scroll');
+                // be nice to others, don't unbind their scroll handlers
+                element.unbind(scrollEvent, handler);
             };
     
             var scrollTrigger = function(event, isEndEvent) {
