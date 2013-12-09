@@ -5,7 +5,7 @@ When the user scrolls within our viewport we update a header-bar, and could easi
 
 
 ### How it works
-    <div ng-scroll-events="updateOnScrollEvents($event, isEndEvent)" class="my-uber-design">
+    <div ng-scroll-event="updateOnScrollEvents($event, isEndEvent)" class="my-uber-design">
       This area is scrollable
     </div>
 The _ng-scroll-events_ is the Directive name and calls the scope-defined function updateOnScrollEvents($event, isEndEvent).
